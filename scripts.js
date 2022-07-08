@@ -125,9 +125,9 @@ const addElements = (task, priority, key) =>{
 	priorityElement.id='priority';
 	priorityElement.textContent=priority.toUpperCase();
 	saveBtn.classList.add('btn', 'savebtn', 'disabled');
-	saveBtn.textContent='Guardar';
+	saveBtn.innerHTML='<span>Guardar</span><i class="fas fa-save"></i>';
 	deleteBtn.classList.add('btn', 'deletebtn', 'enabled');
-	deleteBtn.textContent='Eliminar';
+	deleteBtn.innerHTML='<span>Eliminar</span><i class="fas fa-trash-alt"></i>';
 	undoBtn.classList.add('fas', 'fa-undo-alt', 'disabled');
 	dragItem.className='drag-item';
 	dragItem.innerHTML=`<div class="drag-item__decoration"></div>
@@ -145,7 +145,8 @@ const addElements = (task, priority, key) =>{
 	
 	saveBtn.addEventListener('click', ()=>{
 		if (saveBtn.className.includes('enabled')) {
-			updateData({task: taskElement.textContent, priority: priorityElement.textContent.toLowerCase()},key);
+			if (taskElement.textContent=='') taskElement.textContent=task;
+			else updateData({task: taskElement.textContent, priority: priorityElement.	textContent.toLowerCase()},key);
 			saveBtn.classList.replace('enabled', 'disabled');
 			undoBtn.classList.replace('enabled', 'disabled')
 		}
