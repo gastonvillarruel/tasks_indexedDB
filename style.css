@@ -193,3 +193,32 @@ input[type="text"]{
 #input-priority:focus{
 	outline: 3px solid #48e;
 }
+
+.savebtn i{display: none;}
+
+.deletebtn i {display: none;}
+
+@media only screen and (max-width: 500px){
+	h1{
+		margin: auto;
+	}
+	.fa-trash{
+		visibility: hidden;
+	}
+	.input-container{
+		display: flex;
+		flex-direction: column;
+	}
+	label, .addbtn{
+		margin-bottom: 20px;
+	}
+	.drag-item{
+		visibility: hidden;
+	}
+	.savebtn span{
+		display: none;
+	}
+	.savebtn i{display: inline;}
+	.deletebtn span{display: none;}
+	.deletebtn i {display: inline;}
+}
