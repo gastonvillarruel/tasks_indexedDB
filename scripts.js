@@ -194,6 +194,19 @@ const addElements = (task, priority, key) =>{
 	})
 
 
+	let initLocation;
+	object.addEventListener('touchstart', e=>{
+		initLocation=e.touches[0].clientX;
+	})
+	object.addEventListener('touchmove', (e)=>{
+		console.log(e.touches[0].clientX);
+		let translate = e.touches[0].clientX - initLocation;
+		object.style.transform=`translateX(${translate}px)`
+	})
+	object.addEventListener('touchend', e=>{
+		object.style.transform='none';
+	})
+
 	if (priorityElement.textContent == 'BAJA') priorityElement.classList.add('low');
 	else if (priorityElement.textContent == 'MEDIA') priorityElement.classList.add('normal');
 	else if (priorityElement.textContent == 'ALTA') priorityElement.classList.add('high');
@@ -219,3 +232,4 @@ trash.addEventListener('drop', e=>{
 	}
 	e.target.classList.remove('trashover');
 })
+

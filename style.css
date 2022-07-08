@@ -7,6 +7,8 @@ p, input, button, i, label, select {
 body {
     background-color: #222;
     color: #fff;
+    padding: 0;
+    margin: 0;
 }
 h1{
 	font-family: sans-serif;
@@ -201,6 +203,7 @@ input[type="text"]{
 @media only screen and (max-width: 500px){
 	h1{
 		margin: auto;
+		padding: 10px;
 	}
 	.fa-trash{
 		visibility: hidden;
@@ -221,4 +224,11 @@ input[type="text"]{
 	.savebtn i{display: inline;}
 	.deletebtn span{display: none;}
 	.deletebtn i {display: inline;}
+	.result{
+		padding-top: 0;
+		box-sizing: border-box;
+		margin: 0;
+		width: 100%;
+		border-radius: 0;
+	}
 }
