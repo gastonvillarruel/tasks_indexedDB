@@ -195,16 +195,20 @@ const addElements = (task, priority, key) =>{
 
 
 	let initLocation;
+	let translate;
 	object.addEventListener('touchstart', e=>{
 		initLocation=e.touches[0].clientX;
 	})
 	object.addEventListener('touchmove', (e)=>{
 		console.log(e.touches[0].clientX);
-		let translate = e.touches[0].clientX - initLocation;
+		translate = e.touches[0].clientX - initLocation;
 		object.style.transform=`translateX(${translate}px)`
+		object.style.opacity=`${(100/translate)*0.5}`
 	})
 	object.addEventListener('touchend', e=>{
 		object.style.transform='none';
+		if (translate>200) deleteBtn.click();
+		object.style.opacity=1;
 	})
 
 	if (priorityElement.textContent == 'BAJA') priorityElement.classList.add('low');

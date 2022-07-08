@@ -202,6 +202,7 @@ input[type="text"]{
 
 @media only screen and (max-width: 500px){
 	h1{
+		font-size: 25px;
 		margin: auto;
 		padding: 10px;
 	}
@@ -230,5 +231,11 @@ input[type="text"]{
 		margin: 0;
 		width: 100%;
 		border-radius: 0;
+		background: none;
+		padding: 0;
+	}
+	.object{
+		background-color: #555;
+		padding: 0 10px;
 	}
 }
