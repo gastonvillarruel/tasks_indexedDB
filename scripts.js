@@ -115,6 +115,7 @@ const addElements = (task, priority, key) =>{
 	let deleteBtn = document.createElement('BUTTON');
 	let undoBtn = document.createElement('I');
 	let dragItem = document.createElement('DIV');
+	let deleteText = document.createElement('P');
 
 	object.classList.add('object');
 	object.id = key;
@@ -127,11 +128,13 @@ const addElements = (task, priority, key) =>{
 	saveBtn.classList.add('btn', 'savebtn', 'disabled');
 	saveBtn.innerHTML='<span>Guardar</span><i class="fas fa-save"></i>';
 	deleteBtn.classList.add('btn', 'deletebtn', 'enabled');
-	deleteBtn.innerHTML='<span>Eliminar</span><i class="fas fa-trash-alt"></i>';
+	deleteBtn.textContent='Eliminar';
 	undoBtn.classList.add('fas', 'fa-undo-alt', 'disabled');
 	dragItem.className='drag-item';
 	dragItem.innerHTML=`<div class="drag-item__decoration"></div>
-						<i class="fas fa-arrows-alt"></i>`
+						<i class="fas fa-arrows-alt"></i>`;
+	deleteText.textContent='Eliminar';
+	deleteText.className='delete-txt';
 
 	taskElement.addEventListener('input', ()=>{
 		saveBtn.classList.replace('disabled', 'enabled');
@@ -194,32 +197,43 @@ const addElements = (task, priority, key) =>{
 	})
 
 
-	let initLocation;
+	let touchInit;
 	let translate;
 	object.addEventListener('touchstart', e=>{
-		initLocation=e.touches[0].clientX;
+		touchInit=e.touches[0].clientX;
 	})
-	object.addEventListener('touchmove', (e)=>{
-		console.log(e.touches[0].clientX);
-		translate = e.touches[0].clientX - initLocation;
-		object.style.transform=`translateX(${translate}px)`
-		object.style.opacity=`${(100/translate)*0.5}`
+	object.addEventListener('touchmove', e=>{
+		translate = e.touches[0].clientX - touchInit;
+		if (translate>=0){
+			object.style.transform=`translateX(${translate}px)`
+			let opacity = 1/(translate*.05);
+			taskElement.style.opacity=opacity;
+			priorityElement.style.opacity=opacity;
+			undoBtn.style.opacity=opacity;
+			saveBtn.style.opacity=opacity;
+			deleteText.style.transform=`translateX(${-translate}px)`
+			deleteText.style.opacity=1-opacity;
+		}
 	})
 	object.addEventListener('touchend', e=>{
 		object.style.transform='none';
-		if (translate>200) deleteBtn.click();
-		object.style.opacity=1;
+		taskElement.style.opacity=1;
+			priorityElement.style.opacity=1;
+			undoBtn.style.opacity=1;
+			saveBtn.style.opacity=1;
+		deleteText.style.opacity=0;
+		if (translate>150) deleteBtn.click();
 	})
 
 	if (priorityElement.textContent == 'BAJA') priorityElement.classList.add('low');
 	else if (priorityElement.textContent == 'MEDIA') priorityElement.classList.add('normal');
 	else if (priorityElement.textContent == 'ALTA') priorityElement.classList.add('high');
-	object.append(taskElement, priorityElement, undoBtn, saveBtn, deleteBtn, dragItem);
+	object.append(taskElement, priorityElement, undoBtn, saveBtn, deleteBtn, dragItem, deleteText);
 	return object;
 }
 
 
-trash.addEventListener('dragover', (e)=>{
+trash.addEventListener('dragover', e=>{
 	e.preventDefault();
 	e.target.classList.add('trashover');
 })

@@ -198,7 +198,15 @@ input[type="text"]{
 
 .savebtn i{display: none;}
 
-.deletebtn i {display: none;}
+.object .delete-txt{
+	position: absolute;
+	opacity: 0;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+
 
 @media only screen and (max-width: 500px){
 	h1{
@@ -223,8 +231,7 @@ input[type="text"]{
 		display: none;
 	}
 	.savebtn i{display: inline;}
-	.deletebtn span{display: none;}
-	.deletebtn i {display: inline;}
+	.deletebtn {display: none;}
 	.result{
 		padding-top: 0;
 		box-sizing: border-box;
