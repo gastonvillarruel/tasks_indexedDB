@@ -16,8 +16,9 @@ h1{
 }
 .fa-trash{
 	position: absolute;
-	padding: 2% 7%;
-	font-size: 50px;
+	top: 65px;
+	left: 10%;
+	font-size: 100px;
 }
 .drag-item{
 	background-color: #555;
