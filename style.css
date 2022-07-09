@@ -208,7 +208,7 @@ input[type="text"]{
 
 
 
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 820px){
 	h1{
 		font-size: 25px;
 		margin: auto;
